@@ -1,28 +1,20 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import styled from 'styled-components';
-import img from '../../images/inspectocat1.png';
+import img from '../../images/cat.png';
 
-const LogoWrapper = styled.div`
-  display: flex;
-  justify-content: center;
-  flex-flow: row;
-  align-items: center;
-`;
 const StyledImg = styled.img`
-  display: flex;
   width: 150px;
 `;
 const StyledTitle = styled.p`
-  display: flex;
   font-family: 'Verdana', sans-serif;
   font-size: 24px;
 `;
 
-const Title = () => (
-  <LogoWrapper>
+const Logo = () => (
+  <Fragment>
     <StyledImg src={img} />
-    <StyledTitle>Github Issues</StyledTitle>
-  </LogoWrapper>
+    <StyledTitle>GitHub Issues</StyledTitle>
+  </Fragment>
 );
 
-export default Title;
+export default Logo;
