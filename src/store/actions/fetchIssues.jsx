@@ -4,19 +4,21 @@ const GET_ISSUES_REQUEST = 'GET_ISSUES_REQUEST';
 const GET_ISSUES_SUCCESS = 'GET_ISSUES_SUCCESS';
 const GET_ISSUES_FAIL = 'GET_ISSUES_FAIL';
 
-const fetchIssues = () => (dispatch) => {
+const fetchIssues = search => (dispatch) => {
   dispatch({
     type: GET_ISSUES_REQUEST,
     payload: { error: false, isLoading: true },
   });
   axios
-    .get(`https://api.github.com/repos/farooqmir/reactJsToDoApp/issues?page=1&per_page=10`)
-    // { headers: { Accept: 'application/vnd.github.squirrel-girl-preview' } })
+    .get(`https://api.github.com/repos/${search}/issues?page=1&per_page=10`)
     .then((response) => {
-      console.log(`resp ${response}`);
       dispatch({
         type: GET_ISSUES_SUCCESS,
-        payload: { error: false, isLoading: false, data: response.data },
+        payload: {
+          error: false,
+          isLoading: false,
+          data: response.data,
+        },
       });
     })
     .catch(() => dispatch({

@@ -4,6 +4,9 @@ import img from '../../images/cat.png';
 
 const StyledImg = styled.img`
   width: 150px;
+  @media (max-width: 400px) {
+    width: 100px;
+  }
 `;
 const StyledTitle = styled.p`
   font-family: 'Verdana', sans-serif;

@@ -12,14 +12,29 @@ const RowWrapper = styled.div`
 `;
 
 class SearchModule extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { value: 'developit/preact' };
+    this.handleChange = this.handleChange.bind(this);
+    this.handleClick = this.handleClick.bind(this);
+  }
+
+  handleChange(event) {
+    this.setState({ value: event.target.value });
+  }
+
+  handleClick() {
+    this.props.fetchIssues(this.state.value);
+  }
+
   render() {
     return (
       <RowWrapper>
         <Input
-          // handleChange={}
+          handleChange={this.handleChange}
         />
         <Button
-          handleClick={() => this.props.fetchIssues()}
+          handleClick={this.handleClick}
         >
           Search
         </Button>
@@ -29,19 +44,13 @@ class SearchModule extends React.Component {
 }
 
 const mapDispatchToProps = dispatch => ({
-  fetchIssues: () => {
-    dispatch(fetchIssues());
+  fetchIssues: (search) => {
+    dispatch(fetchIssues(search));
   },
 });
 
 SearchModule.propTypes = {
-  // data: PropTypes.array,
   fetchIssues: PropTypes.func.isRequired,
-};
-
-SearchModule.defaultProps = {
-  // data: [],
-  //  fetchIssues: undefined,
 };
 
 export default connect(

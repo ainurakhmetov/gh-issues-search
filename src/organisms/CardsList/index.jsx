@@ -6,6 +6,7 @@ import IssueCard from '../../molecules/IssueCard';
 const List = styled.div`
   display: flex;
   flex-direction: column;
+  margin-top: 15px;
 `;
 
 const CardsList = ({ data }) => (

@@ -22,7 +22,7 @@ const StyledInput = styled.input`
 const Input = ({ handleChange }) => (
   <StyledInput
     onChange={handleChange}
-    placeholder="search..."
+    placeholder="username/repository"
   />
 );
 

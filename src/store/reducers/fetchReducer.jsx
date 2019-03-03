@@ -4,7 +4,7 @@ const GET_ISSUES_FAIL = 'GET_ISSUES_FAIL';
 
 const initialState = {
   data: [],
-  error: '',
+  error: false,
   isLoading: false,
 };
 
