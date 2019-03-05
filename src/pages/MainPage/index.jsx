@@ -16,27 +16,33 @@ const Wrapper = styled.div`
     flex-direction: column;
 `;
 
-class MainPage extends React.Component {
-  render() {
-    return (
-      <Wrapper>
-        <Logo />
-        <SearchModule />
-        <LoadingStatus
-          isLoading={this.props.isLoading}
-          error={this.props.error}
-        />
-        <CardsList
-          data={this.props.data}
-        />
-      </Wrapper>
-    );
-  }
-}
+const MainPage = ({
+  perPage, isLoading, error, data, showForward, page,
+}) => (
+  <Wrapper>
+    <Logo />
+    <SearchModule
+      defaultValue={perPage}
+      showForward={showForward}
+      page={page}
+    />
+    <LoadingStatus
+      isLoading={isLoading}
+      error={error}
+    />
+    <CardsList
+      data={data}
+    />
+  </Wrapper>
+);
+
 const mapStateToProps = state => ({
   data: state.fetch.data,
   isLoading: state.fetch.isLoading,
   error: state.fetch.error,
+  perPage: state.fetch.perPage,
+  showForward: state.fetch.showForward,
+  page: state.fetch.page,
 });
 
 export default connect(
@@ -44,13 +50,19 @@ export default connect(
 )(MainPage);
 
 MainPage.propTypes = {
-  data: PropTypes.array,
+  data: PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.number, PropTypes.string])),
   isLoading: PropTypes.bool,
   error: PropTypes.bool,
+  perPage: PropTypes.number,
+  showForward: PropTypes.bool,
+  page: PropTypes.number,
 };
 
 MainPage.defaultProps = {
   data: [],
   isLoading: false,
   error: false,
+  perPage: 5,
+  showForward: false,
+  page: 1,
 };

@@ -14,8 +14,9 @@ const StyledInput = styled.input`
    &:focus {
     box-shadow: 0 0 10px rgba(0,0,0,0.5);
    }
-   @media (max-width: 390px) {
+   @media (max-width: 430px) {
     width: 150px;
+    font-size: 12px;
   }
 `;
 

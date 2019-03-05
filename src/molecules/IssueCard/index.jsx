@@ -2,6 +2,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 
 const StyledArticle = styled.article`
   border-radius: 15px;
@@ -13,14 +14,19 @@ const StyledArticle = styled.article`
   }
 `;
 
-const Body = styled.div`
+const Body = styled(Link)`
   margin: 10px 3px 0 3px;
   display: flex;
   flex-direction: row;
   font-weight: bold;
+  text-decoration: none;
+  color: #000;
+  &:hover {
+    color: #0366d6;
+  }
 `;
 
-const Date = styled.span`
+const Data = styled.span`
   color: rgba(0, 0, 0, .6);
   margin: 3px 0;
 `;
@@ -53,7 +59,7 @@ const User = styled.a`
 `;
 
 const IssueCard = ({
-  number, title, created_at, user,
+  number, title, created_at, user, dataId,
 }) => (
   <StyledArticle>
     <Header>
@@ -61,11 +67,11 @@ const IssueCard = ({
         {user.login}
         <Avatar src={user.avatar_url} />
       </User>
-      <Date>
+      <Data>
         {`# ${number} / ${created_at.replace(/[A-Z]/g, ' ')}`}
-      </Date>
+      </Data>
     </Header>
-    <Body>
+    <Body to={{ pathname: `/${number}`, state: { stateId: dataId } }}>
       {title}
     </Body>
   </StyledArticle>
@@ -75,7 +81,12 @@ IssueCard.propTypes = {
   number: PropTypes.number,
   title: PropTypes.string,
   created_at: PropTypes.string,
-  user: PropTypes.object,
+  user: PropTypes.shape({
+    html_url: PropTypes.string.isRequired,
+    login: PropTypes.string.isRequired,
+    avatar_url: PropTypes.string.isRequired,
+  }),
+  dataId: PropTypes.number,
 };
 
 IssueCard.defaultProps = {
@@ -83,6 +94,7 @@ IssueCard.defaultProps = {
   title: '',
   created_at: '',
   user: {},
+  dataId: 0,
 };
 
 export default IssueCard;

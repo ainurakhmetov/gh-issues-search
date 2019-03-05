@@ -1,3 +1,4 @@
+/* eslint-disable react/no-array-index-key */
 import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
@@ -11,12 +12,16 @@ const List = styled.div`
 
 const CardsList = ({ data }) => (
   <List>
-    {data.map((content, i) => <IssueCard key={i} {...content} />)}
+    {data.map((content, i) => <IssueCard key={i} dataId={i} {...content} />)}
   </List>
 );
 
 CardsList.propTypes = {
-  data: PropTypes.array.isRequired,
+  data: PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.number, PropTypes.string])),
+};
+
+CardsList.defaultProps = {
+  data: [],
 };
 
 export default CardsList;

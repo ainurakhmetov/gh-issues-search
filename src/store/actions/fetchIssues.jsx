@@ -1,30 +1,15 @@
-import axios from 'axios';
+import getData from './getData';
 
 const GET_ISSUES_REQUEST = 'GET_ISSUES_REQUEST';
-const GET_ISSUES_SUCCESS = 'GET_ISSUES_SUCCESS';
-const GET_ISSUES_FAIL = 'GET_ISSUES_FAIL';
 
-const fetchIssues = search => (dispatch) => {
+const fetchIssues = search => (dispatch, getStore) => {
+  const state = getStore();
   dispatch({
     type: GET_ISSUES_REQUEST,
-    payload: { error: false, isLoading: true },
+    payload: { error: false, isLoading: true, search },
   });
-  axios
-    .get(`https://api.github.com/repos/${search}/issues?page=1&per_page=10`)
-    .then((response) => {
-      dispatch({
-        type: GET_ISSUES_SUCCESS,
-        payload: {
-          error: false,
-          isLoading: false,
-          data: response.data,
-        },
-      });
-    })
-    .catch(() => dispatch({
-      type: GET_ISSUES_FAIL,
-      payload: { error: true, isLoading: false },
-    }));
+  const url = `https://api.github.com/repos/${search}/issues?page=1&per_page=${state.fetch.perPage}`;
+  getData(dispatch, url, state);
 };
 
 export default fetchIssues;
