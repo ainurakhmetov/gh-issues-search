@@ -8,7 +8,6 @@ const getData = (dispatch, url, state) => {
     .get(url)
     .then((response) => {
       const showForward = response.data.length === state.fetch.perPage;
-      console.log('length '+response.data.length);
       dispatch({
         type: GET_ISSUES_SUCCESS,
         payload: {

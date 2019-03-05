@@ -1,3 +1,4 @@
+/* eslint-disable react/forbid-prop-types */
 import React from 'react';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
@@ -10,6 +11,7 @@ const StyledArticle = styled.article`
   margin: 3px 0;
   @media (max-width: 400px) {
     display: block;
+    font-size: 12px;
   }
 `;
 
@@ -35,16 +37,14 @@ const Header = styled.div`
   flex-direction: row;
   justify-content: space-between;
   @media (max-width: 400px) {
-    display: block;
     margin: 0 auto;
   }
 `;
 
 const Avatar = styled.img`
+  margin-top: 3px;
   width: 75px;
-  @media (max-width: 400px) {
-    width: 75px;
-  }
+  border-radius: 45px;
 `;
 
 const User = styled.a`
@@ -102,7 +102,7 @@ IssuePage.defaultProps = {
 
 IssuePage.propTypes = {
   stateId: PropTypes.number,
-  data: PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.number, PropTypes.string])),
+  data: PropTypes.array,
   location: PropTypes.shape({
     state: PropTypes.string.isRequired,
   }),

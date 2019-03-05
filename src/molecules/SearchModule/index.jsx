@@ -18,7 +18,7 @@ const RowWrapper = styled.div`
 class SearchModule extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { value: 'developit/preact', perPage: 5 };
+    this.state = { value: 'developit/preact', perPage: 5, page: 1 };
     this.handleChange = this.handleChange.bind(this);
     this.handleClick = this.handleClick.bind(this);
     this.changePerPage = this.changePerPage.bind(this);
@@ -34,19 +34,18 @@ class SearchModule extends React.Component {
 
   changePerPage = (e) => {
     this.setState({ perPage: e.target.value },
-      () => this.props.changePerPage(this.state.perPage));
+      () => this.props.changePerPage(Number(this.state.perPage)));
   };
 
-  goForward() {
-    const page = this.props.pageNum + 1;
-    this.props.changePage(page);
-  }
+  goForward = () => {
+    this.setState({ page: this.props.page + 1 },
+      () => this.props.changePage(this.state.page));
+  };
 
-  goBack() {
-    const page = this.props.pageNum - 1;
-    this.props.changePage(page);
-  }
-
+  goBack = () => {
+    this.setState({ page: this.props.page - 1 },
+      () => this.props.changePage(this.state.page));
+  };
 
   render() {
     return (
@@ -65,9 +64,9 @@ class SearchModule extends React.Component {
         </Button>
         <Pager
           pageNum={this.props.page}
-          showFoward={this.props.showForward}
-          goFoward={this.goForward}
+          showForward={this.props.showForward}
           goBack={this.goBack}
+          goForward={this.goForward}
         />
       </RowWrapper>
     );
@@ -89,6 +88,7 @@ const mapDispatchToProps = dispatch => ({
 SearchModule.propTypes = {
   fetchIssues: PropTypes.func.isRequired,
   changePerPage: PropTypes.func.isRequired,
+  changePage: PropTypes.func.isRequired,
   defaultValue: PropTypes.number,
   showForward: PropTypes.bool,
   page: PropTypes.number,

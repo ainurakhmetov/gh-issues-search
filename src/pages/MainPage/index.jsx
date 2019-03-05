@@ -1,3 +1,4 @@
+/* eslint-disable react/forbid-prop-types */
 import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
@@ -50,7 +51,7 @@ export default connect(
 )(MainPage);
 
 MainPage.propTypes = {
-  data: PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.number, PropTypes.string])),
+  data: PropTypes.array,
   isLoading: PropTypes.bool,
   error: PropTypes.bool,
   perPage: PropTypes.number,

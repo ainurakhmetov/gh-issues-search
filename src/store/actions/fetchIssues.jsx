@@ -8,7 +8,7 @@ const fetchIssues = search => (dispatch, getStore) => {
     type: GET_ISSUES_REQUEST,
     payload: { error: false, isLoading: true, search },
   });
-  const url = `https://api.github.com/repos/${search}/issues?page=1&per_page=${state.fetch.perPage}`;
+  const url = `https://api.github.com/repos/${search}/issues?page=${state.fetch.page}&per_page=${state.fetch.perPage}`;
   getData(dispatch, url, state);
 };
 

@@ -9,7 +9,7 @@ const changePage = page => (dispatch, getStore) => {
     payload: page,
   });
   const url = `https://api.github.com/repos/${state.fetch.search}/issues?page=${page}&per_page=${state.fetch.perPage}`;
-  getData(dispatch, state, url);
+  getData(dispatch, url, state);
 };
 
 export default changePage;

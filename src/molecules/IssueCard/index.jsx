@@ -11,6 +11,7 @@ const StyledArticle = styled.article`
   margin: 3px 0;
   @media (max-width: 400px) {
     display: block;
+    font-size: 12px;
   }
 `;
 
@@ -36,16 +37,14 @@ const Header = styled.div`
   flex-direction: row;
   justify-content: space-between;
   @media (max-width: 400px) {
-    display: block;
     margin: 0 auto;
   }
 `;
 
 const Avatar = styled.img`
+  margin-top: 3px;
   width: 75px;
-  @media (max-width: 400px) {
-    width: 75px;
-  }
+  border-radius: 45px;
 `;
 
 const User = styled.a`

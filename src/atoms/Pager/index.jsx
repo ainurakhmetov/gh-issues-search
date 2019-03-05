@@ -2,8 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
-const SpanEmpty = styled.span`
-  width: 15px;
+const Span = styled.span`
+  margin: 0 25px;
   display: inline-block;
 `;
 
@@ -14,17 +14,23 @@ const PagerWrapper = styled.div`
   justify-content: center;
 `;
 
+const StyledButton = styled.button`
+  margin: 0 10px;
+`;
+
 const Pager = ({
   pageNum, showForward, goForward, goBack,
 }) => {
   const showBack = pageNum > 1;
   return (
     <PagerWrapper>
-      {showBack
-        ? <span onClick={goBack}>&larr;</span>
-        : <SpanEmpty>&nbsp;</SpanEmpty>
-      } {pageNum} { showForward
-        ? <span onClick={goForward}>&rarr;</span> : null}
+      { showBack
+        ? <StyledButton onClick={goBack}>&larr;</StyledButton>
+        : <Span /> }
+      {pageNum}
+      { showForward
+        ? <StyledButton onClick={goForward}>&rarr;</StyledButton>
+        : <Span /> }
     </PagerWrapper>
   );
 };
@@ -42,6 +48,5 @@ Pager.defaultProps = {
   goForward: undefined,
   goBack: undefined,
 };
-
 
 export default Pager;

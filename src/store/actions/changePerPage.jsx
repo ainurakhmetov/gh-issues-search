@@ -9,7 +9,7 @@ const changePerPage = perPage => (dispatch, getStore) => {
     payload: perPage,
   });
   if (state.fetch.search) {
-    const url = `https://api.github.com/repos/${state.fetch.search}/issues?page=1&per_page=${perPage}`;
+    const url = `https://api.github.com/repos/${state.fetch.search}/issues?page=${state.fetch.page}&per_page=${perPage}`;
     getData(dispatch, url, state);
   }
 };

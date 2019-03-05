@@ -1,4 +1,4 @@
-/* eslint-disable react/no-array-index-key */
+/* eslint-disable react/no-array-index-key, react/forbid-prop-types */
 import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
@@ -17,7 +17,7 @@ const CardsList = ({ data }) => (
 );
 
 CardsList.propTypes = {
-  data: PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.number, PropTypes.string])),
+  data: PropTypes.array,
 };
 
 CardsList.defaultProps = {

@@ -22,7 +22,6 @@ const fetchReducer = (state = initialState, action) => {
         search: action.payload.search,
         isLoading: action.payload.isLoading,
         error: action.payload.error,
-        // perPage: action.payload.perPage,
       };
     case GET_ISSUES_SUCCESS:
       return {
