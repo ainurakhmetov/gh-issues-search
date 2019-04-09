@@ -18,7 +18,7 @@ const RowWrapper = styled.div`
 class SearchModule extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { value: 'developit/preact', perPage: 5, page: 1 };
+    this.state = { value: 'facebook/react', perPage: 5, page: 1 };
     this.handleChange = this.handleChange.bind(this);
     this.handleClick = this.handleClick.bind(this);
     this.changePerPage = this.changePerPage.bind(this);
@@ -56,6 +56,7 @@ class SearchModule extends React.Component {
         />
         <Input
           handleChange={this.handleChange}
+          value={this.state.value}
         />
         <Button
           handleClick={this.handleClick}

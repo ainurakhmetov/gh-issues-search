@@ -20,19 +20,22 @@ const StyledInput = styled.input`
   }
 `;
 
-const Input = ({ handleChange }) => (
+const Input = ({ handleChange, value }) => (
   <StyledInput
     onChange={handleChange}
     placeholder="username/repository"
+    value={value}
   />
 );
 
 Input.propTypes = {
   handleChange: PropTypes.func,
+  value: PropTypes.string,
 };
 
 Input.defaultProps = {
   handleChange: undefined,
+  value: '',
 };
 
 export default Input;
